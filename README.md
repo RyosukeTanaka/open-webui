@@ -163,3 +163,8 @@ If you have any questions, suggestions, or need assistance, please open an issue
 ---
 
 Created by [Timothy J. Baek](https://github.com/tjbck) - Let's make Open Web UI even more amazing together! 💪
+
+Docker build and run.
+
+docker build -t open-webui .
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always open-webui
