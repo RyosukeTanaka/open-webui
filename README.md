@@ -168,3 +168,24 @@ Docker build and run.
 
 docker build -t open-webui .
 docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always open-webui
+
+when files are changed.
+
+Rebuild the Docker Image: After making changes to the source code outside of Docker, you typically need to rebuild your Docker image to include these changes. This involves using the docker build command with the appropriate context and tag. For example:
+
+
+docker build -t open-webui .
+This command should be run from the directory containing your Dockerfile. It rebuilds the image with the latest changes.
+
+Stop and Remove the Existing Container: Before you can run a new container from the updated image, you'll need to stop and remove the existing container. Use the following commands:
+
+
+docker stop open-webui
+docker rm open-webui
+Run the New Container: With the updated image, you can now run a new container. Use the same docker run command you initially used:
+
+
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always open-webui
+
+This will start a new container with the updated code.
+
