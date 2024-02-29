@@ -168,6 +168,9 @@ Docker build and run.
 
 docker build -t open-webui .
 docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always open-webui
+OR
+when ollma is running on docker.
+docker run -d -p 3000:8080 -e OLLAMA_API_BASE_URL=http://host.docker.internal:11434 -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 
 when files are changed.
 
@@ -183,9 +186,13 @@ Stop and Remove the Existing Container: Before you can run a new container from 
 docker stop open-webui
 docker rm open-webui
 Run the New Container: With the updated image, you can now run a new container. Use the same docker run command you initially used:
-
-
 docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always open-webui
+
+when ollma is running on docker.
+docker run -d -p 3000:8080 -e OLLAMA_API_BASE_URL=http://host.docker.internal:11434 -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 
 This will start a new container with the updated code.
 
+Run Ollama in docker.
+ docker run --gpus=all -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+ docker exec -it ollama ollama run llama2
